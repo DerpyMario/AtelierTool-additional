@@ -9,7 +9,7 @@ public class ApiClient : IDisposable
     public ApiClient()
     {
         _client = new HttpClient();
-        _client.BaseAddress = new Uri("https://gacha.lukefz.xyz/atelier/");
+        _client.BaseAddress = new Uri("https://atelier-rampage.b-cdn.net/atelier/");
     }
 
     public async Task<(string AssetVersion, string MasterDataVersion)> GetVersionsAsync()

@@ -14,7 +14,7 @@ public class ApiClient : IDisposable
 
     public async Task<(string AssetVersion, string MasterDataVersion)> GetVersionsAsync()
     {
-        var req = new HttpRequestMessage(HttpMethod.Get, "version");
+        var req = new HttpRequestMessage(HttpMethod.Get, "version.json");
 
         var resp = await _client.SendAsync(req);
         resp.EnsureSuccessStatusCode();

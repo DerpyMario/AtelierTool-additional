@@ -2,9 +2,9 @@ name: .NET
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "steam-windows" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "steam-windows" ]
 
 jobs:
   build:

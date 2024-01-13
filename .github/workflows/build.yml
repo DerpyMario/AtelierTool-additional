@@ -24,5 +24,5 @@ jobs:
     - name: Upload Artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: AtelierTool
+        name: AtelierTool-steam-release
         path: AtelierTool/bin/Release/net7.0/publish

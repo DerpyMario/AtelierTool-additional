@@ -39,6 +39,7 @@ internal sealed class BundleDownloadCommand : AsyncCommand<BundleDownloadCommand
 {
     public enum Platform
     {
+        StandaloneWindows,
         Android,
         iOS
     }
@@ -51,7 +52,7 @@ internal sealed class BundleDownloadCommand : AsyncCommand<BundleDownloadCommand
 
         [Description("Platform to download assets for")]
         [CommandOption("-p|--platform")]
-        [DefaultValue(Platform.Android)]
+        [DefaultValue(Platform.StandaloneWindows)]
         public Platform AssetPlatform { get; init; }
 
         [Description("Path to store the assets into.")]

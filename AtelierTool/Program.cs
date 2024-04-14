@@ -61,7 +61,7 @@ internal sealed class BundleDownloadCommand : AsyncCommand<BundleDownloadCommand
 
         [Description("Amount of files to download concurrently.")]
         [CommandOption("-c|--concurrent")]
-        [DefaultValue(16)]
+        [DefaultValue(60)]
         public int ConcurrentCount { get; init; }
     }
 
@@ -69,7 +69,7 @@ internal sealed class BundleDownloadCommand : AsyncCommand<BundleDownloadCommand
     {
         if (settings.AssetVersion == null)
         {
-            ConsoleLogger.WriteInfoLine("Asset version not specified, obtaining latest version from server.");
+            ConsoleLogger.WriteInfoLine("Obtaining latest version from server.");
 
             using var client = new ApiClient();
             var (assetVer, _) = await client.GetVersionsAsync();
@@ -176,7 +176,7 @@ internal sealed class MasterDataDownloadCommand : AsyncCommand<MasterDataDownloa
     {
         if (settings.MasterDataVersion == null)
         {
-            ConsoleLogger.WriteInfoLine("Master data version not specified, obtaining latest version from server.");
+            ConsoleLogger.WriteInfoLine("Obtaining latest version from server.");
 
             using var client = new ApiClient();
             var (_, masterDataVer) = await client.GetVersionsAsync();

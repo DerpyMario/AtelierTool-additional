@@ -1,4 +1,4 @@
-﻿using System.Collections.Concurrent;
+using System.Collections.Concurrent;
 using System.Security.Cryptography;
 using Spectre.Console;
 
@@ -171,7 +171,10 @@ public class Downloader : IDisposable
 
         try
         {
-            var bundleData = await _client.GetByteArrayAsync(bundle.RelativePath);
+            var response = await _client.GetAsync(bundle.RelativePath);
+            response.EnsureSuccessStatusCode();
+            
+            var bundleData = await response.Content.ReadAsByteArrayAsync();
 
             await using var decStream = bundle.Compression != 3 
                 ? new MemoryStream(bundleData) 
@@ -181,6 +184,14 @@ public class Downloader : IDisposable
 
             await using var fs = File.OpenWrite(path);
             await decStream.CopyToAsync(fs);
+
+            // Preserve server timestamp if available
+            if (response.Content.Headers.LastModified.HasValue)
+            {
+                var lastModified = response.Content.Headers.LastModified.Value.DateTime;
+                File.SetLastWriteTime(path, lastModified);
+                File.SetCreationTime(path, lastModified);
+            }
 
             Interlocked.Increment(ref _finishedAssetCount);
         }

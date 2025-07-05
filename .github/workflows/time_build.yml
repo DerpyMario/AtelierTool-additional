@@ -2,9 +2,9 @@ name: .NET
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "time-adder" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "time-adder" ]
 
 jobs:
   build:

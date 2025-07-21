@@ -9,7 +9,7 @@ public class ApiClient : IDisposable
     public ApiClient()
     {
         _client = new HttpClient();
-        _client.BaseAddress = new Uri("https://raw.githubusercontent.com/DerpyMario/AtelierTool-additional/master/");
+        _client.BaseAddress = new Uri("https://raw.githubusercontent.com/DerpyMario/AtelierTool-additional/refs/heads/master/");
     }
 
     public async Task<(string AssetVersion, string MasterDataVersion)> GetVersionsAsync()

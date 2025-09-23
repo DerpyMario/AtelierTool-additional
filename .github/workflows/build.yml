@@ -25,4 +25,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: AtelierTool
-        path: AtelierTool/bin/Release/net7.0/publish
+        path: AtelierTool/bin/Release/net8.0/publish
